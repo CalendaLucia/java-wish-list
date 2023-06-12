@@ -39,15 +39,14 @@ public class BonusWishList {
                     System.out.println(regalo.toUpperCase());
                 }
 
-                FileWriter writer = null;
-                try {
-                    writer = new FileWriter(FILE_PATH);
+
+                try (FileWriter writer = new FileWriter(FILE_PATH)) {
                     writer.write(wishList.toString());
-                    writer.close();
                     System.out.println("Wishlist salvata in documento");
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Unable to write to file");
                 }
+
             }
             else if (risposta.isEmpty() || !risposta.equalsIgnoreCase("si")) {
                 System.out.println("Valore non valido! Scrivi si o no");
